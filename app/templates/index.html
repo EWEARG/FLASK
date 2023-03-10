@@ -1,8 +1,27 @@
-{% extends './layout.html' %}
+{% extends './layout2.html' %}
 
 {% block title %}{{ data.titulo }}{% endblock %}
 
-{% block body %}
+{% block header %}{{ data.encabezado }}{% endblock %}
+
+{% block content %}
+    <h3>La guía definitiva de Flexbox </h3>
+    <p>El módulo Flex Layout es un nuevo módulo de diseño en CSS3 creado para mejorar la alineación, las direcciones y el orden de los elementos.
+        en el contenedor incluso cuando son de tamaño dinámico o incluso desconocido. La característica primordial de la
+        contenedor flexible es la capacidad de modificar el ancho o la altura de sus elementos secundarios para llenar el espacio disponible
+        de la mejor manera posible en diferentes tamaños de pantalla.
+    </p>
+    <p>Flexbox es relativamente nuevo, pero hoy en día disfruta de una excelente compatibilidad con los navegadores (casi el 83 % de los navegadores admiten
+        caja flexible). Flexbox Layout se usa para componentes de aplicaciones pequeñas, mientras que CSS Grid Layout Module es
+        destinado a manejar los diseños a gran escala.
+    </p>
+    <h3>Los dos ejes de Flexbox</h3>
+    <p>Cuando trabaje con flexbox, debe pensar en términos de dos ejes: el eje principal y el eje transversal. El
+        el eje principal está definido por la propiedad de dirección de flexión, y el eje transversal corre perpendicular a él.
+        Todo lo que hacemos con flexbox se refiere a estos ejes, por lo que vale la pena entender cómo funcionan desde
+        El principio.
+    </p>
+
     <h1>Ahora Uso Layout + Block + css </h1>
     <h2>{{data.bienvenida}} </h2>
     {% if data.numero_cursos > 0 %}
@@ -17,3 +36,35 @@
 
 {% endblock %}
 
+
+{% block navigation %}
+    <h3>Contenedor Flexible</h3>
+        <ul>
+            <li>flex-direction</li>
+            <li>flex-wrap</li>
+            <li>justify-content</li>
+            <li>align-content</li>
+            <li>align-items</li>
+        </ul>
+        <h3>Diseño Flexible de Opciones </h3>
+        <ul>
+            <li>Exportar WORD</li>
+            <li>Exportar EXCEL</li>
+            <li>Imprimir Reporte</li>
+            <li>......</li>       
+        </ul>   
+{% endblock %}
+
+{% block extra %}
+    <h3>Sub Título Interno:</h3>
+    <ul>
+        <li>Puntos de Menu Adicional</li>
+        <li>Se puede alinear Vertical u Horizontal</li>
+        <li>Se pueden ordenar dentro del contenedor</li>
+        <li>Y mas ...</li>
+    </ul>
+{% endblock %}
+
+{% block footer %}
+    <p>Footer</p>
+{% endblock %}

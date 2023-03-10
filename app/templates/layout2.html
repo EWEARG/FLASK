@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+    <meta name="description" content="Use this HTML basic website two columns liquid, side fixed layout template where the navigation menu and the extra stuff are on the left column, the main content on the right.">
+    <meta name="generator" content="HAPedit 3.1">
+    <link rel="canonical" href="https://www.w3docs.com/snippets/html/layout_templates/24.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HTML FlexBox Template - Two columns liquid, side fixed, right content" />
+    <meta property="og:description" content="Use this HTML basic website two columns liquid, side fixed layout template where the navigation menu and the extra stuff are on the left column, the main content on the right." />
+    <meta property="og:image" content="https://www.w3docs.com/build/images/logo-amp.png" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="192" />
+    <meta property="og:image:height" content="192" />
+    <meta property="og:image:alt" content="W3dcos" />
+    
+</head>
+<body>
+<div id="container">
+    <div id="header">
+        <h1>{% block header %}{% endblock %}</h1>
+        <a href="/download/template/24" target="_blank">Link para descarga</a>
+    </div>
+    <div id="wrapper">
+        <div id="content">
+            <p><strong>1. Contenido Principal</strong></p>
+            {% block content %}
+            {% endblock %}            
+        </div>
+    </div>
+    <div id="navigation">
+        <p><strong>2. Menú Opciones</strong></p>
+        {% block navigation %}   
+        {% endblock %}
+        
+    </div>
+    <div id="extra">
+        <p><strong>3. Herramientas Adicionales</strong></p>
+        {% block extra %}   
+        {% endblock %}
+
+    </div>
+    <div id="footer">{% block footer %}{% endblock %}
+    </div>
+</div>
+<script type="text/javascript">AddFillerLink("content", "navigation", "extra")</script>
+</body>
+</html>

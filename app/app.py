@@ -10,30 +10,31 @@
 
 from flask import Flask, render_template, request, url_for, redirect 
 
-inicio = Flask ( __name__ )
+app = Flask ( __name__ )
 
-@inicio.before_request  
+@app.before_request  
 def before_request():
     print("Antes de la Petición...")
 
-@inicio.after_request
+@app.after_request
 def after_request(response):
     print("Después de la petición...")
     return response
 
-@inicio.route ( "/" )
+@app.route ( "/" )
 def index( ):
     # return "Esta es mi Primera Prueba"
     cursos =["PHP", "SQL", "Power-BI", "Python", "Java", "FLASK"]
     data={
-        'titulo':'Titulo Principal',
+        'titulo':'ENERSA - Legales',
+        'encabezado':'Gestión Sector Legales',
         'bienvenida':'¡Saludos !',
         'cursos': cursos,
         'numero_cursos': len(cursos)
     }
     return render_template('index.html', data=data)
 
-@inicio.route ('/contacto/<nombre>/<edad>')
+@app.route ('/contacto/<nombre>/<edad>')
 def contacto(nombre, edad):
     data= {
         'titulo':'Contacto',
@@ -54,8 +55,8 @@ def pagina_no_encontrada(error):
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    inicio.add_url_rule('/query_string', view_func=query_string)
-    inicio.register_error_handler(404, pagina_no_encontrada)
-    inicio.run(debug=True, port=5000)
+    app.add_url_rule('/query_string', view_func=query_string)
+    app.register_error_handler(404, pagina_no_encontrada)
+    app.run(debug=True, port=5000)
 
 
