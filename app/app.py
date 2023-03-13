@@ -9,6 +9,56 @@
 # git push -u origin main
 
 from flask import Flask, render_template, request, url_for, redirect 
+from flask_sqlalchemy import SQLAlchemy as sal
+from sqlalchemy import create_engine
+
+import pandas as pd
+
+#Python ODBC 
+import pyodbc
+
+# OPEN 
+#establish database connection
+Driver='ODBC Driver 17 for SQL Server'
+Server='SURUBI037'
+Database='CAPEX'
+Trusted_Connection='yes'
+Database_Con = f'mssql+pyodbc://@{Server}/{Database}?driver={Driver}'
+xxx = "mssql+pyodbc://SURUBI037/CAPEX?driver=SQL Server?Trusted_Connection=yes"
+
+engine = sal.create_engine(xxx)
+
+#engine=sal.create_engine(Database_Con)
+conn = engine.connect()
+
+try:
+    
+    
+    #pyodbc.connect('Driver={SQL Server};'
+    #                  'Server=SURUBI037;'
+    #                  'Database=CAPEX;'
+    #                  'Trusted_Connection=yes;')
+    #                  # cursor  
+    #cursor = conn.cursor()
+    #cursor.execute("SELECT [Oblea],[DireccionIP],[ModeloID], [Procesar] FROM xrx_impresoras")
+    #records = cursor.fetchall() 
+    print('EXITO - Conectado a la BD SQL SERVER') 
+    data = pd.read_sql_query("""
+    SELECT [ID_Indicador] ,[NOM_Indicador] ,[TIPO_Indicador] ,[SIRVE_PARA] ,[PROCESO] ,[FORMULA] ,[UNIDADES]
+      ,[META] ,[TENDENCIA_ESPERADA] ,[FRECUENCIA_MEDICION] ,[FUENTE_INFORMACION] ,[RESPONSABLE] ,[ACTUALIZADO_DATE]
+      ,[ACTUALIZADO_POR] ,[LOG_SQL] FROM [CAPEX].[dbo].[SGI_Indicadores]
+    """, conn)    
+
+except:
+    print('Error al tratar de conectarse - Se utiliza archivo local')
+    #os.chdir('C:/Users/eettlin.ENERGIAER/Downloads')
+    #os.getcwd()
+    #filename = 'Impresoras.csv'
+    #data = pd.read_csv(filename, sep=';', header=0)
+  
+
+print('Matriz Orignal' , data.shape)
+print (data.head(10))
 
 app = Flask ( __name__ )
 
@@ -26,8 +76,8 @@ def index( ):
     # return "Esta es mi Primera Prueba"
     cursos =["PHP", "SQL", "Power-BI", "Python", "Java", "FLASK"]
     data={
-        'titulo':'ENERSA - Legales',
-        'encabezado':'Gestión Sector Legales',
+        'titulo':'ENERSA - CMI',
+        'encabezado':'Gestión de Indicadores',
         'bienvenida':'¡Saludos !',
         'cursos': cursos,
         'numero_cursos': len(cursos)
